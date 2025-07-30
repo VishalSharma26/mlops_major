@@ -9,7 +9,7 @@ sys.path.append(BASE_DIR)
 from src.utils import load_data
 from src.train import train_model
 
-MODEL_FILE                = "model/linear_model.joblib"
+MODEL_FILE                = os.path.abspath(os.path.join(BASE_DIR, "model", "linear_model.joblib"))
 MIN_PERFORMANCE_THRESHOLD = 0.5
 
 def test_data_loading():
