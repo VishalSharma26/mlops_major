@@ -8,6 +8,7 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 COPY src/ src/
 COPY tests/ tests/
+COPY model/ model/
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
