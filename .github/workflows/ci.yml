@@ -53,9 +53,9 @@ jobs:
         with:
           name: model-artifacts
           path: |
-            linear_model.joblib
-            quant_params.joblib
-            unquant_params.joblib
+            model/linear_model.joblib
+            model/quant_params.joblib
+            model/unquant_params.joblib
 
   build-and-test-container:
     runs-on: ubuntu-latest
@@ -71,5 +71,4 @@ jobs:
         run: docker run --rm mlops-linear
 
       - name: Verify predictions
-        run: |
-          python src/predict.py
+        run: docker run --rm mlops-linear python src/predict.py
