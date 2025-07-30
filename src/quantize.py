@@ -4,10 +4,13 @@ import joblib
 import numpy as np
 
 BASE_DIR     = os.path.join(os.path.dirname(__file__), "../")
-MODEL_FILE   = os.path.join(BASE_DIR, "model", "linear_model.joblib")
-UNQUANT_FILE = os.path.join(BASE_DIR, "model", "unquant_params.joblib")
-QUANT_FILE   = os.path.join(BASE_DIR, "model", "quant_params.joblib")
+MODEL_FILE   = os.path.abspath(os.path.join(BASE_DIR, "model", "linear_model.joblib"))
+UNQUANT_FILE = os.path.abspath(os.path.join(BASE_DIR, "model", "unquant_params.joblib"))
+QUANT_FILE   = os.path.abspath(os.path.join(BASE_DIR, "model", "quant_params.joblib"))
 
+if not os.path.exists(os.path.dirname(MODEL_FILE)):
+    os.makedirs(os.path.dirname(MODEL_FILE))
+    
 def quantize_model():
     # Load trained model
     model = joblib.load(MODEL_FILE)

@@ -3,7 +3,16 @@ import sys
 import joblib
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
+
+BASE_DIR = os.path.join(os.path.dirname(__file__), "../")
+sys.path.append(BASE_DIR)
+sys.path.append(os.path.dirname(__file__))
 from utils import load_data
+
+LINER_MODEL_FILE = os.path.abspath(os.path.join(BASE_DIR, "model", "linear_model.joblib"))
+
+if not os.path.exists(os.path.dirname(LINER_MODEL_FILE)):
+    os.makedirs(os.path.dirname(LINER_MODEL_FILE))
 
 def train_model():
     # Load data
@@ -24,8 +33,8 @@ def train_model():
     print(f"MSE Loss: {mse:.4f}")
 
     # Save model
-    joblib.dump(model, "linear_model.joblib")
-    print("Model saved as linear_model.joblib")
+    joblib.dump(model, LINER_MODEL_FILE)
+    print(f"Model saved as {LINER_MODEL_FILE}")
 
 if __name__ == "__main__":
     train_model()
